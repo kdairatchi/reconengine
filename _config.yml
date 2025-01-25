@@ -1,0 +1,8 @@
+title: ReconEngine
+description: "Automated Recon Tool Documentation"
+baseurl: "" # Leave empty for the root URL
+url: "https://kdairatchi.github.io/reconengine" # Update this with your Pages URL or custom domain
+theme: minima # Default theme; you can replace it with any supported theme
+markdown: kramdown
+plugins:
+  - jekyll-feed
