@@ -8,46 +8,83 @@
 
 	<script src="./assets/jquery-2.1.3.min.js"></script>
     <link rel="stylesheet" href="./assets/style.css">
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .input-group-text, .form-control {
+            background-color: #212529;
+            color: #ffffff;
+            border-color: #6c757d;
+        }
+        .form-control:focus {
+            background-color: #212529;
+            color: #ffffff;
+        }
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: #ffffff;
+        }
+        h4, h5 {
+            color: #ffffff;
+        }
+    </style>
 </head>
 
-<body>
-
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand text-capitalize" href="#info">Information gethering</a>
-          <a class="navbar-brand text-capitalize" href="#gitHubdorking">GitHub dorking</a>
-          <a class="navbar-brand text-capitalize" href="#cMSdorking">CMS dorking</a>
-          <a class="navbar-brand text-capitalize" href="#cVESearch">CVE Search</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Author Informations</h5>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-12">
+            <h4 class="fw-bold">Automated Subdomain Enumeration</h4>
+            <form id="subdomain-form">
+                <div class="input-group mb-3">
+                    <input type="text" id="target-domain" class="form-control" placeholder="Enter Target Domain (e.g., example.com)">
+                    <button type="button" id="run-subfinder" class="btn btn-danger">Run Subfinder</button>
+                </div>
+            </form>
+            <div id="subdomain-results" style="display: none;">
+                <h5 class="fw-bold">Results:</h5>
+                <pre id="subdomain-output"></pre>
             </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active" target="_blank" aria-current="page" href="https://x.com/mijanhaque_">My Twitter</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" target="_blank" href="https://www.linkedin.com/in/mijanhaque/">My Linkedin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="https://www.facebook.com/mijanhaqueofficial">My Facebook Page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="https://t.me/mijanhaque">My Telegram</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="https://github.com/freelancermijan/">My Github</a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </nav>
+    </div>
+</div>
+
+
+<body class="bg-black text-light">   
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Recon Tools
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#info">Information Gathering</a></li>
+                    <li><a class="dropdown-item" href="#gitHubdorking">GitHub Dorking</a></li>
+                    <li><a class="dropdown-item" href="#cVESearch">CVE Search</a></li>
+                </ul>
+            </div>    
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Author Information</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" target="_blank" rel="noopener" aria-current="page" href="https://x.com/_N0T4H4CK3R">My Twitter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/kdairatchi/">My Github</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
     <!-- header start -->
         <form id="info" class="container-fluid">
             <div class="input-group">
@@ -65,6 +102,7 @@
                     <h4 class="fw-bold">Subdomain finding:</h4>
                 </div>
             </div>
+	    <div class="container-fluid overflow-auto" style="max-height: 400px;">
             <div class="row text-center">
                 <div class="col-12">
                     <button onclick="subdomainDork('https://crt.sh/?q=%25.example.com')" type="button" class="btn btn-outline-danger m-1">crt.sh</button>
@@ -110,6 +148,7 @@
                 <h4 class="fw-bold">Technology detector:</h4>
             </div>
         </div>
+	<div class="container-fluid overflow-auto" style="max-height: 400px;">    
         <div class="row text-center">
             <div class="col-12">
                 <button onclick="gitDork('https://builtwith.com/example.com')" type="button" class="btn btn-outline-danger m-1">builtwith.com</button>
@@ -128,6 +167,7 @@
 <!-- vuln scan category 0.1 -->
     <div class="container-fluid">
         <div class="row text-center">
+	<div class="container-fluid overflow-auto" style="max-height: 400px;">	
             <div class="col-6">
                 <h4 class="fw-bold">Port scanning:</h4>
                 <button onclick="portDork('https://viewdns.info/portscan/?host=example.com')" type="button" class="btn btn-outline-danger m-1">viewdns.info</button>
@@ -136,7 +176,7 @@
                 
                 <button onclick="portDork('https://web-check.xyz/check/example.com')" type="button" class="btn btn-outline-danger m-1">web-check.xyz</button>
             </div>
-
+	    <div class="container-fluid overflow-auto" style="max-height: 400px;">
             <div class="col-6">
                 <h4 class="fw-bold">URLs collecting:</h4>
                 <button onclick="urlDork('https://web.archive.org/cdx/search/cdx?url=*.example.com/*&output=txt&collapse=urlkey&fl=original&page=/')" type="button" class="btn btn-outline-danger m-1">web.archive.org</button>
@@ -153,6 +193,7 @@
 
     <div class="container-fluid">
         <div class="row text-center">
+	<div class="container-fluid overflow-auto" style="max-height: 400px;">
             <div class="col-12">
                 <h4 class="fw-bold">Information disclosure:</h4>
             </div>
@@ -253,6 +294,7 @@
                 <h4 class="fw-bold">All vulnerability:</h4>
             </div>
         </div>
+	<div class="container-fluid overflow-auto" style="max-height: 400px;">
         <div class="row text-center">
             <div class="col-12">
                 <button onclick="allDork('site:example.com  inurl:cat= | inurl:search= | inurl:action= | inurl:module= | inurl:rep= | inurl:review= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:total= | inurl:selectID= | inurl:page= | inurl:search= | inurl:recherche= | inurl:term= | inurl:misc= | inurl:idProduct= | inurl:num= | inurl:idCategory= | inurl:no= | inurl:table= | inurl:bbs= | inurl:bookPageNo= | inurl:proj_nr= | inurl:card= | inurl:category= | inurl:LAN= | inurl:cid= | inurl:class= | inurl:column= | inurl:p= | inurl:mode= | inurl:date= | inurl:cPath= | inurl:delete= | inurl:dir= | inurl:chnum= | inurl:code= | inurl:email= | inurl:T****= | inurl:fetch= | inurl:file= | inurl:field= | inurl:first name= | inurl:form= | inurl:from= | inurl:filter= | inurl:pr= | inurl:gubun=')" type="button" class="btn btn-outline-danger m-1">SQLi Parameters (51)</button>
@@ -290,6 +332,7 @@
     <!-- vuln scan category 4 -->
     <div id="gitHubdorking" class="container-fluid mt-5">
         <div class="row text-center">
+	<div class="container-fluid overflow-auto" style="max-height: 400px;">
             <div class="col-12">
                 <h4 class="fw-bold">GitHub normal dorking:</h4>
             </div>
@@ -382,7 +425,8 @@
                     </div>
                 </form>
             </div>
-        </div>  
+        </div>
+	<div class="container-fluid overflow-auto" style="max-height: 400px;">    
         <div class="row text-center">
             <div class="col-12">
                 <button onclick="cveDork('https://0day.today/search?search_request=example.com')" type="button" class="btn btn-outline-danger m-1">0day.today</button>
@@ -408,23 +452,28 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <footer class="container-fluid bg-dark text-light py-3 mt-5">
         <div class="row text-center">
             <div class="col-12">
                 <h5>More dork engines</h5>
-                <p class=""><a class="p-2" href="https://www.exploit-db.com" target="_blank">exploit-db.com</a><a class="p-2" href="https://dorki.attaxa.com/dashboard" target="_blank">dorki.attaxa.com</a><a  class="p-2" href="https://dorksearch.com" target="_blank">dorksearch.com</a> </p>
+                <p class="">
+                    <a class="p-2 text-light" href="https://www.exploit-db.com" target="_blank" rel="noopener">exploit-db.com</a>
+                    <a class="p-2 text-light" href="https://dorki.attaxa.com/dashboard" target="_blank" rel="noopener">dorki.attaxa.com</a>
+                    <a class="p-2 text-light" href="https://dorksearch.com" target="_blank" rel="noopener">dorksearch.com</a>
+                </p>
             </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row text-center pt-4">
             <div class="col-12">
-                <p class=""> Developed by <a href="https://x.com/mijanhaque_" target="_blank">Mijan Haque</a> </p>
+                <p class="mb-0">
+                    Developed by <a href="https://x.com/_N0T4H4CK3R" target="_blank" rel="noopener" class="text-light"><i>Twitter</i></a>
+                </p>
+                <p class="mb-0">
+                    GitHub Profile <a href="https://Github.com/kdairatchi" target="_blank" rel="noopener" class="text-light"><i>Kdairatchi</i></a>
+                </p>
             </div>
         </div>
-    </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="./assets/script.js"></script>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
