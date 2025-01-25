@@ -1,3 +1,13 @@
+---
+---
+@import "{{ site.theme }}";
+
+/* Add your custom styles below */
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
 #info{
     padding-top: 60px !important;
     padding-bottom: 0px;
